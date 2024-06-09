@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Fiche des Vols</h2>
+<form method="get" action="{% url 'vol_fiche' %}">
+    <div class="form-group">
+        <label for="aeroport_depart_id">Aéroport de Départ</label>
+        <select name="aeroport_depart_id" id="aeroport_depart_id" class="form-control">
+            <option value="">Tous</option>
+            {% for aeroport in aeroports %}
+                <option value="{{ aeroport.id }}" {% if request.GET.aeroport_depart_id == aeroport.id|stringformat:"s" %}selected{% endif %}>{{ aeroport.nom }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="aeroport_arrivee_id">Aéroport d'Arrivée</label>
+        <select name="aeroport_arrivee_id" id="aeroport_arrivee_id" class="form-control">
+            <option value="">Tous</option>
+            {% for aeroport in aeroports %}
+                <option value="{{ aeroport.id }}" {% if request.GET.aeroport_arrivee_id == aeroport.id|stringformat:"s" %}selected{% endif %}>{{ aeroport.nom }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="start_date">Date de début</label>
+        <input type="date" id="start_date" name="start_date" class="form-control" value="{{ request.GET.start_date }}">
+    </div>
+    <div class="form-group">
+        <label for="end_date">Date de fin</label>
+        <input type="date" id="end_date" name="end_date" class="form-control" value="{{ request.GET.end_date }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+    <button type="submit" name="export" value="csv" class="btn btn-secondary">Exporter CSV</button>
+    <button type="submit" name="export" value="pdf" class="btn btn-secondary">Exporter PDF</button>
+
+</form>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Avion</th>
+            <th>Pilote</th>
+            <th>Départ</th>
+            <th>Arrivée</th>
+            <th>Date et Heure de Départ</th>
+            <th>Date et Heure d'Arrivée</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vol in vols %}
+        <tr>
+            <td>{{ vol.avion.nom }}</td>
+            <td>{{ vol.pilote }}</td>
+            <td>{{ vol.aeroport_depart.nom }}</td>
+            <td>{{ vol.aeroport_arrivee.nom }}</td>
+            <td>{{ vol.date_heure_depart }}</td>
+            <td>{{ vol.date_heure_arrivee }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Liste des Aéroports</h2>
+<a href="{% url 'add_aeroport' %}" class="btn btn-primary mb-3">Ajouter un aéroport</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Pays</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for aeroport in aeroports %}
+        <tr>
+            <td>{{ aeroport.nom }}</td>
+            <td>{{ aeroport.pays }}</td>
+            <td>
+                <a href="{% url 'view_aeroport' aeroport.id %}" class="btn btn-info">Voir</a>
+                <a href="{% url 'edit_aeroport' aeroport.id %}" class="btn btn-info">Modifier</a>
+                <a href="{% url 'delete_aeroport' aeroport.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

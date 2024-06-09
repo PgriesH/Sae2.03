@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Détails du type d'avion</h2>
+<table class="table">
+    <tr>
+        <th>Marque</th>
+        <td>{{ type_avion.marque }}</td>
+    </tr>
+    <tr>
+        <th>Le modele</th>
+        <td>{{ type_avion.modele }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ type_avion.decription }}</td>
+    </tr>
+    <tr>
+        <th>Image</th>
+        <td> {% if type_avion.image %}
+                <img src="{{ type_avion.image.url }}" alt="{{ type_avion.modele }}" style="width: 100px;">
+            {% else %}
+                Pas d'image
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>Longuer de piste</th>
+        <td>{{ type_avion.longueur_piste_necessaire }}</td>
+    </tr>
+</table>
+<a href="{% url 'list_types_avions' %}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

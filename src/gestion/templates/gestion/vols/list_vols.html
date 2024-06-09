@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Liste des Vols</h2>
+
+{% if messages %}
+    <div class="alert alert-info" role="alert">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="d-flex justify-content-between mb-3">
+    <!-- Bouton Ajouter un vol -->
+    <a href="{% url 'add_vol' %}" class="btn btn-primary">Ajouter un vol</a>
+
+    <!-- Formulaire d'importation des vols -->
+    <form method="post" enctype="multipart/form-data" action="{% url 'import_vols' %}" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="myfile" class="sr-only">Importer des vols (CSV)</label>
+            <input type="file" name="myfile" id="myfile" class="form-control-file mr-2">
+        </div>
+        <button type="submit" class="btn btn-secondary">Importer</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Avion</th>
+            <th>Pilote</th>
+            <th>Aéroport de Départ</th>
+            <th>Date et Heure de Départ</th>
+            <th>Aéroport d'Arrivée</th>
+            <th>Date et Heure d'Arrivée</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vol in vols %}
+        <tr>
+            <td>{{ vol.avion.nom }}</td>
+            <td>{{ vol.pilote }}</td>
+            <td>{{ vol.aeroport_depart.nom }}</td>
+            <td>{{ vol.date_heure_depart }}</td>
+            <td>{{ vol.aeroport_arrivee.nom }}</td>
+            <td>{{ vol.date_heure_arrivee }}</td>
+            <td>
+                <a href="{% url 'view_vol' vol.id %}" class="btn btn-info">Voir</a>
+                <a href="{% url 'edit_vol' vol.id %}" class="btn btn-info">Modifier</a>
+                <a href="{% url 'delete_vol' vol.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

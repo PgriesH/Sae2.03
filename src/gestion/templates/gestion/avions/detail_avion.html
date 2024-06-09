@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Détails de l'avion</h2>
+<table class="table">
+    <tr>
+        <th>Nom</th>
+        <td>{{ avion.nom }}</td>
+    </tr>
+    <tr>
+        <th>Compagnie</th>
+        <td>{{ avion.compagnie }}</td>
+    </tr>
+    <tr>
+        <th>Modele</th>
+        <td>{{ avion.modele }}</td>
+    </tr>
+
+</table>
+<a href="{% url 'list_avions' %}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

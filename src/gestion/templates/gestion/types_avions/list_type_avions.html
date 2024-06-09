@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Liste des Types d'Avions</h2>
+<a href="{% url 'add_type_avion' %}" class="btn btn-primary mb-3">Ajouter un type d'avion</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Description</th>
+            <th>Longueur de piste nécessaire (m)</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for type_avion in type_avions %}
+        <tr>
+            <td>{{ type_avion.marque }}</td>
+            <td>{{ type_avion.modele }}</td>
+            <td>{{ type_avion.description }}</td>
+            <td>{{ type_avion.longueur_piste_necessaire }}</td>
+            <td>
+                {% if type_avion.image %}
+                    <img src="{{ type_avion.image.url }}" alt="{{ type_avion.modele }}" style="width: 100px;">
+                {% else %}
+                    Pas d'image
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'view_type_avion' type_avion.id %}" class="btn btn-info">Voir</a>
+                <a href="{% url 'edit_type_avion' type_avion.id %}" class="btn btn-info">Modifier</a>
+                <a href="{% url 'delete_type_avion' type_avion.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

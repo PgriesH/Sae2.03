@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if avion.id %}Modifier{% else %}Ajouter{% endif %} un avion</h2>
+<form method="post" enctype="multipart/form-data" class="mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_nom">Nom</label>
+        <input type="text" class="form-control" id="id_nom" name="nom" value="{{ form.nom.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="id_compagnie">Compagnie</label>
+        <select class="form-control" id="id_compagnie" name="compagnie">
+            {% for compagnie in form.compagnie.field.queryset %}
+                <option value="{{ compagnie.id }}" {% if form.compagnie.value == compagnie.id %}selected{% endif %}>{{ compagnie.nom }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_modele">Modèle</label>
+        <select class="form-control" id="id_modele" name="modele">
+            {% for modele in form.modele.field.queryset %}
+                <option value="{{ modele.id }}" {% if form.modele.value == modele.id %}selected{% endif %}>{{ modele.modele }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Sauvegarder</button>
+    <a href="{% url 'list_avions' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

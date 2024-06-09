@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Détails de l'aeroport</h2>
+<table class="table">
+    <tr>
+        <th>Nom</th>
+        <td>{{ aeroport.nom }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ aeroport.pays }}</td>
+    </tr>
+
+</table>
+<a href="{% url 'list_aeroports' %}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

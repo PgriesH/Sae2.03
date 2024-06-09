@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Détails du type d'avion</h2>
+<table class="table">
+    <tr>
+        <th>Marque</th>
+        <td>{{ vol.avion }}</td>
+    </tr>
+    <tr>
+        <th>Le modele</th>
+        <td>{{ vol.pilote }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ vol.aeroport_depart }}</td>
+    </tr>
+    <tr>
+        <th>Image</th>
+        <td>{{ vol.date_heure_depart }}</td>
+    </tr>
+    <tr>
+        <th>Longuer de piste</th>
+        <td>{{ vol.aeroport_arrivee }}</td>
+    </tr>
+    <tr>
+        <th>Longuer de piste</th>
+        <td>{{ vol.date_heure_arrivee }}</td>
+    </tr>
+</table>
+<a href="{% url 'list_vols' %}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

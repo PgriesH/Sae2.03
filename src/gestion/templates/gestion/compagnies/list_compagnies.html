@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Liste des Compagnies</h2>
+<a href="{% url 'add_compagnie' %}" class="btn btn-primary mb-3">Ajouter une compagnie</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Pays de rattachement</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for compagnie in compagnies %}
+        <tr>
+            <td>{{ compagnie.nom }}</td>
+            <td>{{ compagnie.description }}</td>
+            <td>{{ compagnie.pays_attache }}</td>
+            <td>
+                <a href="{% url 'view_compagnie' compagnie.id %}" class="btn btn-info">Voir</a>
+                <a href="{% url 'edit_compagnie' compagnie.id %}" class="btn btn-info">Modifier</a>
+                <a href="{% url 'delete_compagnie' compagnie.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

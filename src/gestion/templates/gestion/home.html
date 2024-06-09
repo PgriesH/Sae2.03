@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Bienvenue dans le Système de Gestion du Trafic Aérien</h1>
+<p>Cette application vous permet de gérer les aéroports, les pistes, les compagnies aériennes, les types d'avions, les avions et les vols.</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Aéroports</div>
+            <div class="card-body">
+                <h5 class="card-title">Gérer les Aéroports</h5>
+                <p class="card-text">Ajoutez, modifiez ou supprimez des informations sur les aéroports.</p>
+                <a href="{% url 'list_aeroports' %}" class="btn btn-light">Voir les Aéroports</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Pistes</div>
+            <div class="card-body">
+                <h5 class="card-title">Gérer les Pistes</h5>
+                <p class="card-text">Administrez les pistes pour chaque aéroport dans le système.</p>
+                <a href="{% url 'list_pistes' %}" class="btn btn-light">Voir les Pistes</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Compagnies Aériennes</div>
+            <div class="card-body">
+                <h5 class="card-title">Gérer les Compagnies</h5>
+                <p class="card-text">Gérez les informations relatives aux compagnies aériennes.</p>
+                <a href="{% url 'list_compagnies' %}" class="btn btn-light">Voir les Compagnies</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">Types d'Avions</div>
+            <div class="card-body">
+                <h5 class="card-title">Types d'Avions</h5>
+                <p class="card-text">Consultez et gérez les types d'avions disponibles.</p>
+                <a href="{% url 'list_types_avions' %}" class="btn btn-light">Voir les Types d'Avions</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Avions</div>
+            <div class="card-body">
+                <h5 class="card-title">Gérer les Avions</h5>
+                <p class="card-text">Accédez à la liste des avions et modifiez leurs informations.</p>
+                <a href="{% url 'list_avions' %}" class="btn btn-light">Voir les Avions</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Vols</div>
+            <div class="card-body">
+                <h5 class="card-title">Gérer les Vols</h5>
+                <p class="card-text">Organisez et planifiez les vols à partir de toutes les informations saisies.</p>
+                <a href="{% url 'list_vols' %}" class="btn btn-light">Voir les Vols</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

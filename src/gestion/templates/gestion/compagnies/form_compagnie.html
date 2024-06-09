@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if compagnie.id %}Modifier{% else %}Ajouter{% endif %} une compagnie</h2>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_nom">Nom</label>
+        <input type="text" class="form-control" id="id_nom" name="nom" value="{{ form.nom.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="id_description">Description</label>
+        <textarea class="form-control" id="id_description" name="description">{{ form.description.value|default_if_none:'' }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="id_pays_attache">Pays de Rattachement</label>
+        <input type="text" class="form-control" id="id_pays_attache" name="pays_attache" value="{{ form.pays_attache.value|default_if_none:'' }}">
+    </div>
+    <button type="submit" class="btn btn-success">Sauvegarder</button>
+    <a href="{% url 'list_compagnies' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

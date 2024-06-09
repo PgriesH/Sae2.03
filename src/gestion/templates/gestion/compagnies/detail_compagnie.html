@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Détails de la Compagnie</h2>
+<table class="table">
+    <tr>
+        <th>Nom</th>
+        <td>{{ compagnie.nom }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ compagnie.description }}</td>
+    </tr>
+    <tr>
+        <th>Pays de Rattachement</th>
+        <td>{{ compagnie.pays_attache }}</td>
+    </tr>
+</table>
+<a href="{% url 'list_compagnies' %}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

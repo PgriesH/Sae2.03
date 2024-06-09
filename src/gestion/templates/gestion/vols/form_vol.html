@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if vol.id %}Modifier{% else %}Ajouter{% endif %} un vol</h2>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_avion">Avion</label>
+        <select class="form-control" id="id_avion" name="avion">
+            {% for avion in form.avion.field.queryset %}
+                <option value="{{ avion.id }}" {% if form.avion.value == avion.id %}selected{% endif %}>{{ avion.nom }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_pilote">Pilote</label>
+        <input type="text" class="form-control" id="id_pilote" name="pilote" value="{{ form.pilote.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="id_aeroport_depart">Aéroport de Départ</label>
+        <select class="form-control" id="id_aeroport_depart" name="aeroport_depart">
+            {% for aeroport in form.aeroport_depart.field.queryset %}
+                <option value="{{ aeroport.id }}" {% if form.aeroport_depart.value == aeroport.id %}selected{% endif %}>{{ aeroport.nom }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_date_heure_depart">Date et Heure de Départ</label>
+        <input type="datetime-local" class="form-control" id="id_date_heure_depart" name="date_heure_depart" value="{{ form.date_heure_depart.value|default_if_none:'' }}">
+    </div>
+    <div class="form-group">
+        <label for="id_aeroport_arrivee">Aéroport d'Arrivée</label>
+        <select class="form-control" id="id_aeroport_arrivee" name="aeroport_arrivee">
+            {% for aeroport in form.aeroport_arrivee.field.queryset %}
+                <option value="{{ aeroport.id }}" {% if form.aeroport_arrivee.value == aeroport.id %}selected{% endif %}>{{ aeroport.nom }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_date_heure_arrivee">Date et Heure d'Arrivée</label>
+        <input type="datetime-local" class="form-control" id="id_date_heure_arrivee" name="date_heure_arrivee" value="{{ form.date_heure_arrivee.value|default_if_none:'' }}">
+    </div>
+    <button type="submit" class="btn btn-success">Sauvegarder</button>
+    <a href="{% url 'list_vols' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}
